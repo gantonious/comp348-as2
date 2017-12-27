@@ -18,7 +18,7 @@ public class RequestLoggingMiddleware implements IRequestMiddleware {
 
     public RequestLoggingMiddleware(String logFilePath) {
         try {
-            this.logfileDataOutputStream = new DataOutputStream(new FileOutputStream(logFilePath));
+            this.logfileDataOutputStream = new DataOutputStream(new FileOutputStream(logFilePath, true));
         } catch (Exception e) {
             throw new RuntimeException("Could not open log file");
         }
