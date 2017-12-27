@@ -20,19 +20,19 @@ public class HttpResponseSerializer {
     }
 
     private void tryToWriteTo(HttpResponse httpResponse, OutputStream outputStream) throws Exception {
-        try (DataOutputStream dataOutputStream = new DataOutputStream(outputStream)) {
-            byte[] responseLine = String.format("HTTP/1.1 %d %s",
-                    httpResponse.getResponseCode(),
-                    httpResponse.getResponseMessage()).getBytes();
+        DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
 
-            dataOutputStream.write(responseLine);
+        byte[] responseLine = String.format("HTTP/1.1 %d %s",
+                httpResponse.getResponseCode(),
+                httpResponse.getResponseMessage()).getBytes();
 
-            for (Map.Entry<String, String> headerItem : httpResponse.getHeaders().entrySet()) {
-                byte[] headerLine = String.format("%s: %s", headerItem.getKey(), headerItem.getValue()).getBytes();
-                dataOutputStream.write(headerLine);
-            }
+        dataOutputStream.write(responseLine);
 
-            dataOutputStream.write(httpResponse.getBody());
+        for (Map.Entry<String, String> headerItem : httpResponse.getHeaders().entrySet()) {
+            byte[] headerLine = String.format("%s: %s", headerItem.getKey(), headerItem.getValue()).getBytes();
+            dataOutputStream.write(headerLine);
         }
+
+        dataOutputStream.write(httpResponse.getBody());
     }
 }

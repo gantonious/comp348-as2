@@ -18,28 +18,26 @@ public class HttpRequestDeserializer {
     }
 
     private HttpRequest tryToDeserializeFrom(InputStream inputStream) throws Exception {
-        try (
-                InputStreamReader dataInputStream = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(dataInputStream)
-        ) {
-            String requestLine = bufferedReader.readLine();
-            String[] requestTokens = requestLine.split(" ");
-            HttpRequest httpRequest = new HttpRequest(requestTokens[0], requestTokens[1]);
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-            while (true) {
-                String nextLine = bufferedReader.readLine();
+        String requestLine = bufferedReader.readLine();
+        String[] requestTokens = requestLine.split(" ");
+        HttpRequest httpRequest = new HttpRequest(requestTokens[0], requestTokens[1]);
 
-                if (nextLine.trim().isEmpty()) {
-                    break;
-                }
+        while (true) {
+            String nextLine = bufferedReader.readLine();
 
-                String[] headerTokens = nextLine.split(":");
-                httpRequest.withHeader(headerTokens[0], headerTokens[1]);
+            if (nextLine.trim().isEmpty()) {
+                break;
             }
 
-            // TODO: parse body
-
-            return httpRequest;
+            String[] headerTokens = nextLine.split(":");
+            httpRequest.withHeader(headerTokens[0], headerTokens[1]);
         }
+
+        // TODO: parse body
+
+        return httpRequest;
     }
 }
