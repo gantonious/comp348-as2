@@ -48,14 +48,17 @@ public class StaticFileRequestMiddleware implements IRequestMiddleware {
 
         try {
             Path pathToFile = Paths.get(filePath);
-
-            return HttpResponse.ok()
-                    .withHeader("Content-Type", MimeTypeUtils.getContentTypeFrom(pathToFile.getFileName().toString()))
-                    .withHeader("Content-Length", String.valueOf(Files.size(pathToFile)))
-                    .withBody(Files.readAllBytes(pathToFile));
+            return buildSuccessfulFileResponse(pathToFile);
         } catch (Exception e) {
             return HttpResponse.notFound();
         }
+    }
+
+    private HttpResponse buildSuccessfulFileResponse(Path pathToFile) throws Exception {
+        return HttpResponse.ok()
+                .withHeader("Content-Type", MimeTypeUtils.getContentTypeFrom(pathToFile.getFileName().toString()))
+                .withHeader("Content-Length", String.valueOf(Files.size(pathToFile)))
+                .withBody(Files.readAllBytes(pathToFile));
     }
 
     private boolean canHandle(HttpRequest httpRequest) {

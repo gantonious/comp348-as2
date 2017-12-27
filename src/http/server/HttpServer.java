@@ -53,7 +53,9 @@ public class HttpServer {
                 try {
                     response = requestPipeline.continueWith(request);
                 } catch (Exception e) {
-                    response = HttpResponse.internalServerError().withBody(e.getLocalizedMessage());
+                    response = HttpResponse
+                            .internalServerError()
+                            .withBody(e.getLocalizedMessage());
                 }
 
                 httpResponseSerializer.writeResponse(response);
