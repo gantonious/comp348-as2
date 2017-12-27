@@ -10,7 +10,7 @@ public class ServerMain {
 
     public static void main(String[] args) {
         HttpServer httpServer = HttpServer.create()
-                .port(8076)
+                .port(8062)
                 .registerMiddleware(new StaticFileRequestMiddleware())
                 .build();
 

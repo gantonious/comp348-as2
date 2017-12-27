@@ -45,11 +45,26 @@ public class StaticFileRequestMiddleware implements IRequestMiddleware {
         return handleFileRequest(resolvePath(httpRequest.getPath()));
     }
 
+    private boolean isPathWithinWebRoot(String path) {
+        Path requestPath = Paths.get(path);
+        Path webRootPath = Paths.get(webRoot);
+
+        try {
+            return requestPath.toRealPath().startsWith(webRootPath.toRealPath());
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     private String resolvePath(String relativePath) {
         return Paths.get(webRoot, relativePath).toString();
     }
 
     private HttpResponse handleFileRequest(String filePath) {
+        if (!isPathWithinWebRoot(filePath)) {
+            return HttpResponse.notFound();
+        }
+
         try {
             Path pathToFile = Paths.get(filePath);
 
