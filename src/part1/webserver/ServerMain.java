@@ -1,6 +1,7 @@
-package part1.http;
+package part1.webserver;
 
 import part1.http.server.HttpServer;
+import part1.webserver.middleware.StaticFileRequestMiddleware;
 
 /**
  * Created by George on 2017-12-26.
@@ -8,7 +9,10 @@ import part1.http.server.HttpServer;
 public class ServerMain {
 
     public static void main(String[] args) {
-        HttpServer httpServer = HttpServer.create().port(1825).build();
+        HttpServer httpServer = HttpServer.create()
+                .port(8077)
+                .registerMiddleware(new StaticFileRequestMiddleware())
+                .build();
 
         createShutdownHook(httpServer);
         httpServer.run();

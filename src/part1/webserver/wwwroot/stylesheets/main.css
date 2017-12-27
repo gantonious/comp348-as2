@@ -1,0 +1,270 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+@font-face {
+	font-family: 'Consolas';
+	font-style: normal;
+	src: url(../fonts/Consolas.ttf) format('truetype');
+}
+
+.head {
+	position: relative;
+	width: 100%;
+	height: 430px;
+	background-color: #35343B;
+	color: #FEFAFF;
+	text-align: center;
+	font-family: roboto;
+}
+
+.head_content {
+	position: relative;
+	font-family: roboto;
+	font-weight: 100;
+	text-align: center;
+	margin-top: -40px;
+	top: 100px;
+}
+
+.link_icon {
+	width: 64px;
+	height: 64px;
+	display: inline-block;
+	background-color: #201F24;
+}
+
+.main_content {
+	width: 900px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: roboto;
+}
+
+.blog_content {
+	width: 750px;
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: roboto;
+}
+
+.content_title{
+	font-size: 250%; 
+	text-align: center; 
+	font-weight: 100;
+}
+
+.divider {
+	position: relative;
+	display: inline-block;
+	width: 750px;
+	height: 1px;
+	background-color: #BCBEBF;
+}
+
+.info_block {
+	position: relative;
+	width: 244px;
+	height: 290px;
+	background-color: none;
+	padding: 0px;
+	font-family: roboto;
+	display: inline-block;
+	z-index: 0;
+}
+
+.info_icon {
+	position: absolute;
+	top: 10px;
+	left: 74px;
+	width: 96px;
+	height: 96px;
+	border-radius: 48px;
+	color: #35343B;
+	border: 1px solid #35343B;
+}
+
+.info_content {
+	position: absolute;
+	text-align: center;
+	font-size: 80%;
+	top: 125px;	
+}
+
+.project_viewer {
+	position: relative;
+	display: inline-block;
+	width: 850px;
+	height: 270px;
+}
+
+.project_preview {
+	position: absolute;
+	text-align: left;
+	background-color: #FEFAFF;
+	width: 510px;
+	height: 250px;
+	font-family: Consolas;
+	border-radius: 4px;
+	border: 1px solid #777585;
+	white-space: nowrap;
+	overflow: auto;
+	z-index: 0;
+
+}
+
+.project_selector {
+	position: absolute;
+	left: 525px;
+	width: 325px;
+	height: 250px;
+	text-align: left;
+}
+
+.project_description {
+	position: absolute;
+	text-align: left;
+	left: 526px;
+	top: 175px;
+	font-size: 80%;
+}
+
+.project_button {
+	width: 310px;
+	height: 25px;
+	padding: 5px;
+	display: block;
+	background-color: #35343B;
+	border-radius: 3px;
+	border: 1px solid #35343B;
+	color: white;
+}
+
+.project_button:hover {
+	background-color: #FEFAFF !important;
+	color: #35343B !important;
+	cursor: pointer;
+}
+
+.showcase_block {
+	position: relative;
+	width: 416px;
+	height: 120px;
+	display: inline-block;
+	font-family: roboto;
+	z-index: 0;
+}
+
+.showcase_icon {
+	position: absolute;
+	top: 23px;
+	left: 0px;
+	width: 74px;
+	height: 74px;
+	border-radius: 37px;
+	color: #1597D8;
+	border: 1px solid #1597D8;
+}
+
+.showcase_content {
+	position: absolute;
+	text-align: left;
+	font-size: 80%;
+	left: 100px;	
+}
+
+.activity_container {
+	position: relative;
+	text-align: left;
+	width: 850px;
+	height: 105%;
+	border-radius: 5px;
+	display: inline-block;
+	font-family: roboto;
+	z-index: 0;
+}
+
+.activity_block {
+	position: relative;
+	width: 280px;
+	height: 90px;
+	display: inline-block;
+	font-family: roboto;
+	z-index: 0;
+}
+
+.activity_icon {
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	top: 0px;
+	left: 0px;
+}
+
+.activity_content {
+	position: absolute;
+	text-align: left;
+	font-size: 95%;
+	padding-right: 2px;
+	top: 0px;
+	left: 0px;	
+}
+
+.blog_title {
+	font-size: 220%;
+	font-weight: 100;
+	display: inline-block;
+}
+
+.blog_date {
+	font-weight: 100;
+	display: inline-block;
+}
+
+a {
+	color: #1597D8;
+	text-decoration: none;
+
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.button a {
+	display: inline-block;
+	text-align: center;
+	height: 25px;
+	width: 100px;
+	background-color: none;
+	color: #20B2AA;
+	text-decoration: none;
+	border: solid #20B2AA 2px;
+	border-radius: 2px;
+}
+
+.button a:hover {
+	color: white;
+	background-color: #20B2AA;
+}
+
+.foot {
+	position: relative;
+	bottom: 0px;
+	background-color: #35343B;
+	width: 100%;
+	height: 75px;
+}
+
+.foot_content {
+	position: absolute;
+	font-family: roboto;
+	font-size: 80%;
+	color: white;
+	right: 25px;
+	bottom: 20px;
+}

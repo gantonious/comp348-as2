@@ -21,6 +21,10 @@ public class HttpRequest {
         return method;
     }
 
+    public boolean hasMethod(String method) {
+        return getMethod().equalsIgnoreCase(method);
+    }
+
     public HttpRequest withMethod(String method) {
         this.method = method;
         return this;

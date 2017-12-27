@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title>Home</title>
+        <meta name="description" content="George Antonious's Personal Website">
+
+        <link rel="stylesheet" href="stylesheets/main.css">
+        <link rel="stylesheet" href="stylesheets/nav_bar.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="scripts/index.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:300,100' rel='stylesheet' type='text/css'>
+
+    </head>
+
+    <body>
+
+        <div id="home" class = "head">
+            <div class = "head_content">
+                <p style="font-size: 225%;">Hey I'm George Antonious</p>
+                <p style="font-size: 150%;">I'm studying software engineering and like programming, gaming, and cookies.</p>
+                <br>
+                <div class="link_icon"><a href="https://github.com/gantonious">
+                <img src="media/icons/github-1024.png" width="64" height="64"></a></div>
+                &nbsp;&nbsp;&nbsp;
+                <div class="link_icon"><a href="http://www.youtube.com/user/gflight92">
+                <img src="media/icons/youtube-1024.png" width="64" height="64"></a></div>
+                &nbsp;&nbsp;&nbsp;
+                <div class="link_icon"><a href="http://www.twitch.tv/gflight92">
+                <img src="media/icons/twitch-1024.png" width="64" height="64"></a></div>
+            </div>
+        </div>    
+
+        <div id="nav" class = "nav_bar">
+            <ul>
+                <li><a id="hme" href="#home" class="onpage">Home</a></li>
+                <li><a id="abt" href="#about">About</a></li>
+                <li><a id="prj" href="#projects">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+            <div id="live" class="live_container">
+                <div class="live_circle"></div>
+                <div class="live_content">Streaming Now</div>
+            </div>
+        </div>
+
+        <div class = "main_content">
+
+            <p id="about" class="content_title">About</p>
+
+            <p> 
+                <div class="info_block">
+                    <div class="info_icon">
+                        <div style="height: 16px;"></div>
+                        <span style="font-size: 390%; font-weight: 100;"><b><img src="media/icons/brackets.png" width="64" height="64"></b></span></div>
+                    <div class="info_content">
+                        <h3 style="font-size: 130%%;">Programming Background</h3>
+                        <p>I have experience programming with MATLAB, Visual Basic, and C. I also have a basic understanding of web development languages such as HTML, CSS, and Java-script.</p>
+                    </div>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="info_block">
+                    <div class="info_icon"><div style="height: 22px;"></div><img src="media/icons/controller.png" width="64" height="48"></div>
+                        <div class="info_content">
+                        <h3 style="font-size: 130%;">Interests</h3>
+                        <p>I am interested in a wide variety of videogame genres from MMORPGs to arcade games. I also enjoy watching anime in my free time.</p>
+                        </div>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="info_block">
+                    <div class="info_icon"><div style="height: 22px;"></div><img src="media/icons/book.png" width="48" height="48"></div>
+                    <div class="info_content">
+                        <h3 style="font-size: 130%;">Educational Pursuits</h3>
+                        <p>I am currently progressing through my undergraduate degree in computer engineering with software option at the University of Alberta.</p>
+                    </div>
+                </div>
+            </p>
+
+            <div class="divider"></div>
+
+            <p id="projects" class="content_title">Projects</p>
+
+            <div class="project_viewer">
+                <div id="viewer" class="project_preview"></div>
+                <div id="description" class="project_description"></div>
+
+                <!-- The following are the individual snip-its for the viewer -->
+                <div id="PRJ0" style="display: none;">
+                    uint32_t mul_mod (uint32_t a, uint32_t b, uint32_t mod) {<br>
+                    <div style="display: inline-block; width: 40px;"></div>// defines the variables needed by mul_mod<br>
+                    <div style="display: inline-block; width: 40px;"></div>uint32_t result = 0;<br>
+                    <div style="display: inline-block; width: 40px;"></div>b = b % mod;<br><br>
+                    <div style="display: inline-block; width: 40px;"></div>while (a != 0) {<br>
+                    <div style="display: inline-block; width: 80px;"></div>if (a % 2 == 1) {<br>
+                    <div style="display: inline-block; width: 120px;"></div>result = (result + b) % mod;<br>
+                    <div style="display: inline-block; width: 80px;"></div>}<br>
+                    <div style="display: inline-block; width: 80px;"></div>a = a >> 1;<br>
+                    <div style="display: inline-block; width: 80px;"></div>b = (b << 1) % mod;<br>
+                    <div style="display: inline-block; width: 40px;"></div>}<br><br>
+                    <div style="display: inline-block; width: 40px;"></div>return result;<br>
+                    }<br>
+                </div>
+                <div id ="DES0" style="display: none;">
+                    This function determines the product of a and b and returns the modulus of that by the number mod. This function is designed for use on the Ardiuno Mega, where an unsigned long is represented by 32 bits. 
+                </div>
+
+                <div id="PRJ1" style="display: none;">
+                    uint32_t pow_mod (uint32_t base, uint32_t exponent, uint32_t mod) {<br>
+                    <div style="display: inline-block; width: 40px;"></div>// defines the variables needed by pow_mod<br>
+                    <div style="display: inline-block; width: 40px;"></div>uint32_t result = 1;<br>
+                    <div style="display: inline-block; width: 40px;"></div>uint32_t power = base % mod;<br>
+                    <br>
+                    <div style="display: inline-block; width: 40px;"></div>while (exponent != 0) {<br>
+                    <div style="display: inline-block; width: 80px;"></div>if ((exponent % 2) == 1) {<br>
+                    <div style="display: inline-block; width: 120px;"></div>result = mul_mod(result, power, mod);<br>
+                    <div style="display: inline-block; width: 80px;"></div>}<br>
+                    <div style="display: inline-block; width: 80px;"></div>exponent = exponent >> 1;<br>
+                    <div style="display: inline-block; width: 80px;"></div>power = mul_mod(power, power, mod); <br>
+                    <div style="display: inline-block; width: 40px;"></div>}<br>
+                    <br>
+                    <div style="display: inline-block; width: 40px;"></div>return result;<br>
+                    }<br>
+                </div>
+                <div id ="DES1" style="display: none;">
+                    This function determines the modulus of base to the power of exponent by mod. This function uses mul_mod to prevent overflow when multiplying large quantities. Designed for the Arduino Mega.    
+                </div>
+
+                <div id="PRJ2" style="display: none;">
+                    .project_viewer {<br>
+                    <div style="display: inline-block; width: 40px;"></div>position: relative;<br>
+                    <div style="display: inline-block; width: 40px;"></div>width: 850px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>height: 270px;<br>
+                    }<br>
+                    <br>
+                    .project_preview {<br>
+                    <div style="display: inline-block; width: 40px;"></div>position: absolute;<br>
+                    <div style="display: inline-block; width: 40px;"></div>text-align: left;<br>
+                    <div style="display: inline-block; width: 40px;"></div>background-color: #FEFAFF;<br>
+                    <div style="display: inline-block; width: 40px;"></div>width: 510px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>height: 250px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>font-family: Consolas;<br>
+                    <div style="display: inline-block; width: 40px;"></div>border-radius: 4px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>border: 1px solid #777585;<br>
+                    <div style="display: inline-block; width: 40px;"></div>overflow: auto;<br>
+                    <div style="display: inline-block; width: 40px;"></div>z-index: 0;<br>
+                    }<br>
+                    <br>
+                    .project_selector {<br>
+                    <div style="display: inline-block; width: 40px;"></div>position: absolute;<br>
+                    <div style="display: inline-block; width: 40px;"></div>left: 525px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>width: 325px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>height: 250px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>text-align: left;<br>
+                    }<br>
+                    <br>
+                    .project_description {<br>
+                    <div style="display: inline-block; width: 40px;"></div>position: absolute;<br>
+                    <div style="display: inline-block; width: 40px;"></div>text-align: left;<br>
+                    <div style="display: inline-block; width: 40px;"></div>left: 526px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>top: 175px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>font-size: 80%;<br>
+                    }<br>
+                    <br>
+                    .project_button {<br>
+                    <div style="display: inline-block; width: 40px;"></div>width: 320px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>height: 25px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>padding: 5px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>display: block;<br>
+                    <div style="display: inline-block; width: 40px;"></div>background-color: #35343B;<br>
+                    <div style="display: inline-block; width: 40px;"></div>border-radius: 3px;<br>
+                    <div style="display: inline-block; width: 40px;"></div>border: 1px solid #35343B;<br>
+                    <div style="display: inline-block; width: 40px;"></div>color: white;<br>
+                    }<br>
+                    <br>
+                    .project_button:hover {<br>
+                    <div style="display: inline-block; width: 40px;"></div>background-color: #FEFAFF !important;<br>
+                    <div style="display: inline-block; width: 40px;"></div>color: #35343B !important;<br>
+                    <div style="display: inline-block; width: 40px;"></div>cursor: pointer;<br>
+                    }
+                </div>
+                <div id ="DES2" style="display: none;">
+                    This CSS is used to style all of the containers used to construct this project selector.
+                </div>
+
+                <div id="PRJ3" style="display: none;">
+                    function pull_twitch_info(user){<br>
+                    <div style="display: inline-block; width: 40px;"></div>var src = "https://api.twitch.tv/kraken/streams/" + user;<br><br>
+                    <div style="display: inline-block; width: 40px;"></div>$.ajax({<br>
+                    <div style="display: inline-block; width: 80px;"></div>url: src,<br>
+                    <div style="display: inline-block; width: 80px;"></div>type: 'get',<br>
+                    <div style="display: inline-block; width: 80px;"></div>dataType: 'jsonp',<br>
+                    <div style="display: inline-block; width: 80px;"></div>success:function(twitch_info){<br>
+                    <div style="display: inline-block; width: 120px;"></div>if (twitch_info.stream == null) {<br>
+                    <div style="display: inline-block; width: 160px;"></div>// execute if not streaming<br>
+                    <div style="display: inline-block; width: 120px;"></div>} else {<br>
+                    <div style="display: inline-block; width: 160px;"></div>// execute if streaming<br>
+                    <div style="display: inline-block; width: 160px;"></div>$("#live").css('display', 'inline-block');<br>
+                    <div style="display: inline-block; width: 120px;"></div>}<br>
+                    <div style="display: inline-block; width: 80px;"></div>}<br>
+                    <div style="display: inline-block; width: 40px;"></div>});<br>
+                    }<br>
+                </div>
+                <div id ="DES3" style="display: none;">
+                    This Java-script uses Twitch's API to check if a user is streaming. This function can be used to edit parts of a web-page to indicate if a user is streaming. It also can grab information about the current streaming session.
+                </div>
+                <!-- End of Snip-its -->
+
+                <div class="project_selector">
+                    <div id = "initial" button-id="0" class="project_button">Modular Multiplication</div>
+                    <div style="height: 5px;"></div>
+                    <div button-id="1" class="project_button">Modular Exponentiation</div>
+                    <div style="height: 5px;"></div>
+                    <div button-id="2" class="project_button">CSS Example</div>
+                    <div style="height: 5px;"></div>
+                    <div button-id="3" class="project_button">Twitch API</div>
+                </div>
+
+            </div>
+        
+        <p style="font-size:175%; font-weight:100;">Milestones</p>
+        <p>
+            <div class="showcase_block">
+                <div class="showcase_icon">
+                <div style="height: 15px;"></div>
+                <span style="font-size: 140%;">DEC</span><br>
+                <span style="font-size: 70%">2014</span>
+                </div>
+                <div class="showcase_content">
+                <span style="font-size: 130%;">PvPunio</span><br>
+                A top down PvP game for Arduino. Features 360 degree moving and shooting, five different maps to play on, and powerups that are sure to make every game wild! Playtesting has shown this game to be difficult to put down. <a href="https://github.com/snackthyme/pvpuino">View source code on Github.</a>
+
+                </div>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="showcase_block">
+                <div class="showcase_icon">
+                <div style="height: 15px;"></div>
+                <span style="font-size: 140%;">NOV</span><br>
+                <span style="font-size: 70%">2014</span>
+                </div>
+                <div class="showcase_content">
+                <span style="font-size: 130%;">Edmonton restaurant filterer for Arduino</span><br>
+                Allows you to navigate around the map of Edmonton and filter restaurants based on a threshold rating and closest proximity to the current cursor position. <a href="https://github.com/snackthyme/c274-restaurant-map-v2">View source code on Github.</a>
+                </div>
+            </div>
+        </p>
+        <p>
+            <div class="showcase_block">
+                <div class="showcase_icon">
+                <div style="height: 15px;"></div>
+                <span style="font-size: 140%;">OCT</span><br>
+                <span style="font-size: 70%">2014</span>
+                </div>
+                <div class="showcase_content">
+                <span style="font-size: 130%;">Encrypted Chat Client for Arduino</span><br>
+                This program facilitates 31 bit-encrypted communication between two Arduinos. Both Arduinos handshake automatically to begin an encrypted chat session, afterwards each user can communicate to one another via their local terminal. <a href="https://github.com/gantonious/encrypted-communication">View source code on Github.</a>
+
+                </div>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="showcase_block">
+                <div class="showcase_icon">
+                <div style="height: 15px;"></div>
+                <span style="font-size: 140%;">OCT</span><br>
+                <span style="font-size: 70%">2014</span>
+                </div>
+                  <div class="showcase_content">
+                <span style="font-size: 130%;">Started Website Development</span><br>
+                Started developing this website during the month of October, it started out with some basic HTML, CSS, and lorem, but I am slowly working on further developing this site. I am planning on utilizing more Java-script to make this site more interactive.
+                </div>
+            </div>
+        </p>
+
+        <p style="font-size:175%; font-weight:100;">Github Activity</p><br>
+        <div id="activity" class="activity_container"></div>
+
+        </div>
+
+        <div class = "foot">
+            <div class = "foot_content">
+                Under Development | Developed by George Antonious | 2015
+            </div>
+        </div>
+
+    </body>
+
+</html>
