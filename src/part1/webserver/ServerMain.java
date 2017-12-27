@@ -10,8 +10,8 @@ public class ServerMain {
 
     public static void main(String[] args) {
         HttpServer httpServer = HttpServer.create()
-                .port(8062)
-                .registerMiddleware(new StaticFileRequestMiddleware())
+                .usePort(8062)
+                .useMiddleware(new StaticFileRequestMiddleware())
                 .build();
 
         createShutdownHook(httpServer);

@@ -12,12 +12,12 @@ public class HttpServerBuilder {
     private int port = HttpServer.DEFAULT_PORT;
     private List<IRequestMiddleware> middlewareLayers = new ArrayList<>();
 
-    public HttpServerBuilder port(int port) {
+    public HttpServerBuilder usePort(int port) {
         this.port = port;
         return this;
     }
 
-    public HttpServerBuilder registerMiddleware(IRequestMiddleware requestMiddleware) {
+    public HttpServerBuilder useMiddleware(IRequestMiddleware requestMiddleware) {
         middlewareLayers.add(requestMiddleware);
         return this;
     }
