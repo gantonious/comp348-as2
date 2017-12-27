@@ -14,7 +14,7 @@ import java.nio.file.Paths;
  * Created by George on 2017-12-26.
  */
 public class StaticFileRequestMiddleware implements IRequestMiddleware {
-    public final static String DEFAULT_WEBROOT = "./src/part1/webserver/wwwroot";
+    public final static String DEFAULT_WEBROOT = "./wwwroot";
 
     private String webRoot;
 
