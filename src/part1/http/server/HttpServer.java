@@ -55,4 +55,12 @@ public class HttpServer {
             }
         }
     }
+
+    public void stop() {
+        try {
+            serverSocket.close();
+        } catch (Exception e) {
+            // TODO: look
+        }
+    }
 }
