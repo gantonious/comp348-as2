@@ -14,7 +14,9 @@ public class RequestPipeline {
     private List<IRequestMiddleware> requestMiddleware;
 
     public RequestPipeline(List<IRequestMiddleware> requestMiddleware) {
-        this.requestMiddleware = new ArrayList<>(requestMiddleware);
+        this.requestMiddleware = new ArrayList<>();
+        this.requestMiddleware.add(new PoweredByMiddleware());
+        this.requestMiddleware.addAll(requestMiddleware);
         this.requestMiddleware.add(new DefaultRequestMiddleware());
     }
 

@@ -6,8 +6,6 @@ import part1.http.models.HttpRequest;
 import part1.http.models.HttpResponse;
 import part1.webserver.MimeTypeUtils;
 
-import java.io.FileInputStream;
-import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
