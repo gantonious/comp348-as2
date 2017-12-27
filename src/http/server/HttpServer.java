@@ -39,13 +39,13 @@ public class HttpServer {
     }
 
     public void run() {
-        HttpRequestDeserializer httpRequestDeserializer = new HttpRequestDeserializer();
-        HttpResponseSerializer httpResponseSerializer = new HttpResponseSerializer();
-
         while (true) {
             try {
                 Socket clientSocket = serverSocket.accept();
-                HttpRequest request = httpRequestDeserializer.deserializeFrom(clientSocket.getInputStream());
+                HttpRequestDeserializer httpRequestDeserializer = new HttpRequestDeserializer(clientSocket.getInputStream());
+                HttpResponseSerializer httpResponseSerializer = new HttpResponseSerializer(clientSocket.getOutputStream());
+
+                HttpRequest request = httpRequestDeserializer.deserializeNextRequest();
                 RequestPipeline requestPipeline = new RequestPipeline(middlewareLayers);
 
                 HttpResponse response;
@@ -56,7 +56,7 @@ public class HttpServer {
                     response = HttpResponse.internalServerError().withBody(e.getLocalizedMessage());
                 }
 
-                httpResponseSerializer.writeTo(response, clientSocket.getOutputStream());
+                httpResponseSerializer.writeResponse(response);
                 clientSocket.close();
 
             } catch (Exception e) {

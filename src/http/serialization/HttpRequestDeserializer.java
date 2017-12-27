@@ -8,19 +8,22 @@ import java.io.*;
  * Created by George on 2017-12-26.
  */
 public class HttpRequestDeserializer {
+    private BufferedReader bufferedReader;
 
-    public HttpRequest deserializeFrom(InputStream inputStream) {
+    public HttpRequestDeserializer(InputStream inputStream) {
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        bufferedReader = new BufferedReader(inputStreamReader);
+    }
+
+    public HttpRequest deserializeNextRequest() {
         try {
-            return tryToDeserializeFrom(inputStream);
+            return tryToDeserializeNextRequest();
         } catch (Exception e) {
             throw new DeserializationException(e);
         }
     }
 
-    private HttpRequest tryToDeserializeFrom(InputStream inputStream) throws Exception {
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
+    private HttpRequest tryToDeserializeNextRequest() throws Exception {
         String requestLine = bufferedReader.readLine();
         String[] requestTokens = requestLine.split(" ");
         HttpRequest httpRequest = new HttpRequest(requestTokens[0], requestTokens[1]);

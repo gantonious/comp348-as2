@@ -10,18 +10,21 @@ import java.util.Map;
  * Created by George on 2017-12-26.
  */
 public class HttpResponseSerializer {
+    private DataOutputStream dataOutputStream;
 
-    public void writeTo(HttpResponse httpResponse, OutputStream outputStream) {
+    public HttpResponseSerializer(OutputStream outputStream) {
+        this.dataOutputStream = new DataOutputStream(outputStream);
+    }
+
+    public void writeResponse(HttpResponse httpResponse) {
         try {
-            tryToWriteTo(httpResponse, outputStream);
+            tryToWriteResponse(httpResponse);
         } catch (Exception e) {
             throw new SerializationException(e);
         }
     }
 
-    private void tryToWriteTo(HttpResponse httpResponse, OutputStream outputStream) throws Exception {
-        DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-
+    private void tryToWriteResponse(HttpResponse httpResponse) throws Exception {
         byte[] responseLine = String.format("HTTP/1.1 %d %s\r\n",
                 httpResponse.getResponseCode(),
                 httpResponse.getResponseMessage()).getBytes();
