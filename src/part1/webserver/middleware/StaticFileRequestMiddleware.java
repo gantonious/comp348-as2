@@ -34,30 +34,11 @@ public class StaticFileRequestMiddleware implements IRequestMiddleware {
         return requestPipeline.continueWith(httpRequest);
     }
 
-    private boolean canHandle(HttpRequest httpRequest) {
-        return httpRequest.hasMethod("GET");
-    }
-
     private HttpResponse handleRequest(HttpRequest httpRequest) {
         if (httpRequest.getPath().endsWith("/")) {
             return handleFileRequest(resolvePath(httpRequest.getPath() + "index.html"));
         }
         return handleFileRequest(resolvePath(httpRequest.getPath()));
-    }
-
-    private boolean isPathWithinWebRoot(String path) {
-        Path requestPath = Paths.get(path);
-        Path webRootPath = Paths.get(webRoot);
-
-        try {
-            return requestPath.toRealPath().startsWith(webRootPath.toRealPath());
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    private String resolvePath(String relativePath) {
-        return Paths.get(webRoot, relativePath).toString();
     }
 
     private HttpResponse handleFileRequest(String filePath) {
@@ -75,5 +56,24 @@ public class StaticFileRequestMiddleware implements IRequestMiddleware {
         } catch (Exception e) {
             return HttpResponse.notFound();
         }
+    }
+
+    private boolean canHandle(HttpRequest httpRequest) {
+        return httpRequest.hasMethod("GET");
+    }
+
+    private boolean isPathWithinWebRoot(String path) {
+        Path requestPath = Paths.get(path);
+        Path webRootPath = Paths.get(webRoot);
+
+        try {
+            return requestPath.toRealPath().startsWith(webRootPath.toRealPath());
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private String resolvePath(String relativePath) {
+        return Paths.get(webRoot, relativePath).toString();
     }
 }
