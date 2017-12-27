@@ -1,11 +1,11 @@
-package part1.http.server;
+package http.server;
 
-import part1.http.middleware.IRequestMiddleware;
-import part1.http.middleware.RequestPipeline;
-import part1.http.models.HttpRequest;
-import part1.http.models.HttpResponse;
-import part1.http.serialization.HttpRequestDeserializer;
-import part1.http.serialization.HttpResponseSerializer;
+import http.middleware.IRequestMiddleware;
+import http.middleware.RequestPipeline;
+import http.models.HttpRequest;
+import http.models.HttpResponse;
+import http.serialization.HttpRequestDeserializer;
+import http.serialization.HttpResponseSerializer;
 
 import java.net.ServerSocket;
 import java.net.Socket;

@@ -1,6 +1,6 @@
-package part1.http.serialization;
+package http.serialization;
 
-import part1.http.models.HttpRequest;
+import http.models.HttpRequest;
 
 import java.io.*;
 

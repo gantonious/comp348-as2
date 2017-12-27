@@ -1,6 +1,6 @@
-package part1.http.server;
+package http.server;
 
-import part1.http.middleware.IRequestMiddleware;
+import http.middleware.IRequestMiddleware;
 
 import java.util.ArrayList;
 import java.util.List;

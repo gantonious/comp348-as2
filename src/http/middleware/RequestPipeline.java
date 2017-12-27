@@ -1,7 +1,7 @@
-package part1.http.middleware;
+package http.middleware;
 
-import part1.http.models.HttpRequest;
-import part1.http.models.HttpResponse;
+import http.models.HttpRequest;
+import http.models.HttpResponse;
 
 import java.util.ArrayList;
 import java.util.List;

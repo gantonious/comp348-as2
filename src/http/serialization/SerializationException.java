@@ -1,4 +1,4 @@
-package part1.http.serialization;
+package http.serialization;
 
 /**
  * Created by George on 2017-12-26.

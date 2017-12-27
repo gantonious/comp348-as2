@@ -1,9 +1,9 @@
 package part1.webserver.middleware;
 
-import part1.http.middleware.IRequestMiddleware;
-import part1.http.middleware.RequestPipeline;
-import part1.http.models.HttpRequest;
-import part1.http.models.HttpResponse;
+import http.middleware.IRequestMiddleware;
+import http.middleware.RequestPipeline;
+import http.models.HttpRequest;
+import http.models.HttpResponse;
 import part1.webserver.MimeTypeUtils;
 
 import java.nio.file.Files;

@@ -1,6 +1,6 @@
 package part1.webserver;
 
-import part1.http.server.HttpServer;
+import http.server.HttpServer;
 import part1.webserver.middleware.StaticFileRequestMiddleware;
 
 /**

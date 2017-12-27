@@ -1,4 +1,4 @@
-package part1.http.models;
+package http.models;
 
 import java.util.HashMap;
 import java.util.Map;

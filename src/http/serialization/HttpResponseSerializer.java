@@ -1,6 +1,6 @@
-package part1.http.serialization;
+package http.serialization;
 
-import part1.http.models.HttpResponse;
+import http.models.HttpResponse;
 
 import java.io.DataOutputStream;
 import java.io.OutputStream;
