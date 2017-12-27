@@ -26,6 +26,7 @@ public class RequestLoggingMiddleware implements IRequestMiddleware {
         String logEntry = String.format("%s - - [%s] \"%s %s HTTP/1.1\" %d %d",
                 host, timeStamp, requestMethod, path, responseCode, bytesTransmitted);
 
+        System.out.println(logEntry);
         return httpResponse;
     }
 

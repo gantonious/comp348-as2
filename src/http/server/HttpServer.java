@@ -47,7 +47,14 @@ public class HttpServer {
                 Socket clientSocket = serverSocket.accept();
                 HttpRequest request = httpRequestDeserializer.deserializeFrom(clientSocket.getInputStream());
                 RequestPipeline requestPipeline = new RequestPipeline(middlewareLayers);
-                HttpResponse response = requestPipeline.executeNext(request);
+
+                HttpResponse response;
+
+                try {
+                    response = requestPipeline.executeNext(request);
+                } catch (Exception e) {
+                    response = HttpResponse.internalServerError().withBody(e.getLocalizedMessage());
+                }
 
                 httpResponseSerializer.writeTo(response, clientSocket.getOutputStream());
                 clientSocket.close();
