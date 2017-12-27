@@ -31,7 +31,7 @@ public class StaticFileRequestMiddleware implements IRequestMiddleware {
         if (canHandle(httpRequest)) {
             return handleRequest(httpRequest);
         }
-        return requestPipeline.executeNext(httpRequest);
+        return requestPipeline.continueWith(httpRequest);
     }
 
     private boolean canHandle(HttpRequest httpRequest) {

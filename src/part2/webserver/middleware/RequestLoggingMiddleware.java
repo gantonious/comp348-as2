@@ -31,7 +31,7 @@ public class RequestLoggingMiddleware implements IRequestMiddleware {
         String path = httpRequest.getPath();
         String timeStamp = getCurrentTimestamp();
 
-        HttpResponse httpResponse = requestPipeline.executeNext(httpRequest);
+        HttpResponse httpResponse = requestPipeline.continueWith(httpRequest);
         int responseCode = httpResponse.getResponseCode();
         int bytesTransmitted = httpResponse.getBody().length;
 

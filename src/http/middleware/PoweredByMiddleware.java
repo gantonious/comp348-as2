@@ -10,7 +10,7 @@ public class PoweredByMiddleware implements IRequestMiddleware {
     @Override
     public HttpResponse handleRequest(HttpRequest httpRequest, RequestPipeline requestPipeline) {
         return requestPipeline
-                .executeNext(httpRequest)
+                .continueWith(httpRequest)
                 .withHeader("Powered-By", "George Antonious");
     }
 }

@@ -20,7 +20,7 @@ public class RequestPipeline {
         this.requestMiddleware.add(new DefaultRequestMiddleware());
     }
 
-    public HttpResponse executeNext(HttpRequest httpRequest) {
+    public HttpResponse continueWith(HttpRequest httpRequest) {
         if (currentMiddlewareIndex < requestMiddleware.size()) {
             return requestMiddleware.get(currentMiddlewareIndex++).handleRequest(httpRequest, this);
         }
