@@ -44,6 +44,7 @@ public class HttpServer {
                 HttpResponse response = HttpResponse.ok()
                         .withHeader("Location", request.getPath())
                         .withHeader("Method", request.getMethod())
+                        .withHeader("Content-Type", "application/json")
                         .withHeader("Powered-By", "GERG")
                         .withBody("{ \"wapoz\": true }");
 

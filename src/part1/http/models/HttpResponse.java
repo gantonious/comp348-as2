@@ -58,6 +58,10 @@ public class HttpResponse {
         return body;
     }
 
+    public boolean hasBody() {
+        return body != null && body.length > 0;
+    }
+
     public HttpResponse withBody(String body) {
         this.body = body.getBytes();
         return this;
