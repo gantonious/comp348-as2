@@ -33,7 +33,7 @@ public class HttpRequestDeserializer {
             }
 
             String[] headerTokens = nextLine.split(":");
-            httpRequest.withHeader(headerTokens[0], headerTokens[1]);
+            httpRequest.withHeader(headerTokens[0].trim(), headerTokens[1].trim());
         }
 
         // TODO: parse body

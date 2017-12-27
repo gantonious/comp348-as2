@@ -40,7 +40,7 @@ public class HttpRequest {
     }
 
     public String getHeader(String key) {
-        return headers.get(key);
+        return headers.getOrDefault(key, null);
     }
 
     public boolean hasHeader(String key) {
