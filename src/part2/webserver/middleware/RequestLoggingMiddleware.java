@@ -5,6 +5,10 @@ import http.middleware.RequestPipeline;
 import http.models.HttpRequest;
 import http.models.HttpResponse;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -12,6 +16,16 @@ import java.util.Date;
  * Created by George on 2017-12-26.
  */
 public class RequestLoggingMiddleware implements IRequestMiddleware {
+    public DataOutputStream logfileDataOutputStream;
+
+    public RequestLoggingMiddleware(String logFilePath) {
+        try {
+            this.logfileDataOutputStream = new DataOutputStream(new FileOutputStream(logFilePath));
+        } catch (Exception e) {
+            throw new RuntimeException("Could not open log file");
+        }
+    }
+
     @Override
     public HttpResponse handleRequest(HttpRequest httpRequest, RequestPipeline requestPipeline) {
         String host = httpRequest.getHeader("Host");
@@ -23,10 +37,15 @@ public class RequestLoggingMiddleware implements IRequestMiddleware {
         int responseCode = httpResponse.getResponseCode();
         int bytesTransmitted = httpResponse.getBody().length;
 
-        String logEntry = String.format("%s - - [%s] \"%s %s HTTP/1.1\" %d %d",
+        String logEntry = String.format("%s - - [%s] \"%s %s HTTP/1.1\" %d %d\n",
                 host, timeStamp, requestMethod, path, responseCode, bytesTransmitted);
 
-        System.out.println(logEntry);
+        try {
+            logfileDataOutputStream.write(logEntry.getBytes());
+        } catch (Exception ex) {
+            // TODO: handle
+        }
+
         return httpResponse;
     }
 
