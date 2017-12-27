@@ -8,7 +8,7 @@ import part1.http.server.HttpServer;
 public class ServerMain {
 
     public static void main(String[] args) {
-        HttpServer httpServer = HttpServer.create().port(1824).build();
+        HttpServer httpServer = HttpServer.create().port(1825).build();
 
         createShutdownHook(httpServer);
         httpServer.run();

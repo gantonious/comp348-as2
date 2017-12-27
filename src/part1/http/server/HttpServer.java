@@ -1,5 +1,7 @@
 package part1.http.server;
 
+import part1.http.middleware.IRequestMiddleware;
+import part1.http.middleware.RequestPipeline;
 import part1.http.models.HttpRequest;
 import part1.http.models.HttpResponse;
 import part1.http.serialization.HttpRequestDeserializer;
@@ -7,6 +9,8 @@ import part1.http.serialization.HttpResponseSerializer;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by George on 2017-12-26.
@@ -15,16 +19,18 @@ public class HttpServer {
     public static final int DEFAULT_PORT = 8080;
 
     private ServerSocket serverSocket;
+    private List<IRequestMiddleware> middlewareLayers;
 
-    public HttpServer(int port) {
-        serverSocket = tryToBuildServerSocker(port);
+    public HttpServer(int port, List<IRequestMiddleware> middlewareLayers) {
+        serverSocket = tryToBuildServerSocket(port);
+        this.middlewareLayers = new ArrayList<>(middlewareLayers);
     }
 
     public static HttpServerBuilder create() {
         return new HttpServerBuilder();
     }
 
-    private ServerSocket tryToBuildServerSocker(int port) {
+    private ServerSocket tryToBuildServerSocket(int port) {
         try {
             return new ServerSocket(port);
         } catch (Exception e) {
@@ -40,13 +46,8 @@ public class HttpServer {
             try {
                 Socket clientSocket = serverSocket.accept();
                 HttpRequest request = httpRequestDeserializer.deserializeFrom(clientSocket.getInputStream());
-
-                HttpResponse response = HttpResponse.ok()
-                        .withHeader("Location", request.getPath())
-                        .withHeader("Method", request.getMethod())
-                        .withHeader("Content-Type", "application/json")
-                        .withHeader("Powered-By", "GERG")
-                        .withBody("{ \"wapoz\": true }");
+                RequestPipeline requestPipeline = new RequestPipeline(middlewareLayers);
+                HttpResponse response = requestPipeline.executeNext(request);
 
                 httpResponseSerializer.writeTo(response, clientSocket.getOutputStream());
                 clientSocket.close();
