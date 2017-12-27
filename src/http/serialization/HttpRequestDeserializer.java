@@ -39,8 +39,18 @@ public class HttpRequestDeserializer {
             httpRequest.withHeader(headerTokens[0].trim(), headerTokens[1].trim());
         }
 
-        // TODO: parse body
+        StringBuilder bodyBuilder = new StringBuilder();
 
-        return httpRequest;
+        while (true) {
+            String nextLine = bufferedReader.readLine();
+
+            if (nextLine == null) {
+                break;
+            }
+
+            bodyBuilder.append(nextLine);
+        }
+
+        return httpRequest.withBody(bodyBuilder.toString());
     }
 }

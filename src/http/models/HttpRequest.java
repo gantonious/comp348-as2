@@ -51,4 +51,22 @@ public class HttpRequest {
         headers.put(key, value);
         return this;
     }
+
+    public byte[] getBody() {
+        return body;
+    }
+
+    public String getBodyAsString() {
+        return new String(body);
+    }
+
+    public HttpRequest withBody(String body) {
+        this.body = body.getBytes();
+        return this;
+    }
+
+    public HttpRequest withBody(byte[] body) {
+        this.body = body;
+        return this;
+    }
 }

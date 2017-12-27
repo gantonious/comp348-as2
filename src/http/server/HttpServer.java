@@ -42,25 +42,8 @@ public class HttpServer {
         while (true) {
             try {
                 Socket clientSocket = serverSocket.accept();
-                HttpRequestDeserializer httpRequestDeserializer = new HttpRequestDeserializer(clientSocket.getInputStream());
-                HttpResponseSerializer httpResponseSerializer = new HttpResponseSerializer(clientSocket.getOutputStream());
-
-                HttpRequest request = httpRequestDeserializer.deserializeNextRequest();
-                RequestPipeline requestPipeline = new RequestPipeline(middlewareLayers);
-
-                HttpResponse response;
-
-                try {
-                    response = requestPipeline.continueWith(request);
-                } catch (Exception e) {
-                    response = HttpResponse
-                            .internalServerError()
-                            .withBody(e.getLocalizedMessage());
-                }
-
-                httpResponseSerializer.writeResponse(response);
-                clientSocket.close();
-
+                HttpClientHandler httpClientHandler = new HttpClientHandler(clientSocket, middlewareLayers);
+                httpClientHandler.serveClient();
             } catch (Exception e) {
                 continue;
             }

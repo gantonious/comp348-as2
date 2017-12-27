@@ -10,7 +10,7 @@ import part2.webserver.middleware.RequestLoggingMiddleware;
 public class ServerMain {
     public static void main(String[] args) {
         HttpServer httpServer = HttpServer.create()
-                .usePort(8081)
+                .usePort(8082)
                 .useMiddleware(new RequestLoggingMiddleware("src/part2/webserver/serverlog.txt"))
                 .useMiddleware(new StaticFileRequestMiddleware("src/part1/webserver/wwwroot"))
                 .build();
