@@ -3,6 +3,8 @@ package http.middleware;
 import http.models.HttpRequest;
 import http.models.HttpResponse;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +24,18 @@ public class RequestPipeline {
 
     public HttpResponse continueWith(HttpRequest httpRequest) {
         if (currentMiddlewareIndex < requestMiddleware.size()) {
-            return requestMiddleware.get(currentMiddlewareIndex++).handleRequest(httpRequest, this);
+            try {
+                return requestMiddleware.get(currentMiddlewareIndex++).handleRequest(httpRequest, this);
+            } catch (Exception e) {
+                return HttpResponse.internalServerError().withBody(getStackTraceAsString(e));
+            }
         }
         throw new IllegalStateException("There is no more middleware to execute.");
+    }
+
+    private String getStackTraceAsString(Exception e) {
+        StringWriter stringWriter = new StringWriter();
+        e.printStackTrace(new PrintWriter(stringWriter));
+        return stringWriter.toString();
     }
 }

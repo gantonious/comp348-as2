@@ -41,23 +41,8 @@ public class HttpClientHandler implements Closeable {
     private void handleNextRequest() {
         HttpRequest httpRequest = httpRequestDeserializer.deserializeNextRequest();
         RequestPipeline requestPipeline = new RequestPipeline(middlewareLayers);
-
-        try {
-            HttpResponse httpResponse = requestPipeline.continueWith(httpRequest);
-            httpResponseSerializer.writeResponse(httpResponse);
-        } catch (Exception e) {
-            HttpResponse internalServerErrorResponse = HttpResponse
-                    .internalServerError()
-                    .withBody(getStackTraceAsString(e));
-
-            httpResponseSerializer.writeResponse(internalServerErrorResponse);
-        }
-    }
-
-    private String getStackTraceAsString(Exception e) {
-        StringWriter stringWriter = new StringWriter();
-        e.printStackTrace(new PrintWriter(stringWriter));
-        return stringWriter.toString();
+        HttpResponse httpResponse = requestPipeline.continueWith(httpRequest);
+        httpResponseSerializer.writeResponse(httpResponse);
     }
 
     @Override
