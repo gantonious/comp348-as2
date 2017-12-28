@@ -7,6 +7,8 @@ import http.models.HttpResponse;
 import http.serialization.HttpRequestDeserializer;
 import http.serialization.HttpResponseSerializer;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.Socket;
@@ -16,32 +18,50 @@ import java.util.List;
 /**
  * Created by George on 2017-12-27.
  */
-public class HttpClientHandler {
-    private List<IRequestMiddleware> middlewareLayers;
+public class HttpClientHandler implements Closeable {
+
+    private Socket clientSocket;
     private HttpRequestDeserializer httpRequestDeserializer;
     private HttpResponseSerializer httpResponseSerializer;
+    private List<IRequestMiddleware> middlewareLayers;
 
-    public HttpClientHandler(Socket clientSocket, List<IRequestMiddleware> requestMiddleware) throws Exception {
-        middlewareLayers = new ArrayList<>(requestMiddleware);
+
+    public HttpClientHandler(Socket clientSocket, List<IRequestMiddleware> requestMiddleware) throws IOException {
+        this.clientSocket = clientSocket;
         httpRequestDeserializer = new HttpRequestDeserializer(clientSocket.getInputStream());
         httpResponseSerializer = new HttpResponseSerializer(clientSocket.getOutputStream());
+        middlewareLayers = new ArrayList<>(requestMiddleware);
     }
 
-    public void serveClient() {
+    public void serveClient() throws IOException {
+        handleNextRequest();
+        close();
+    }
+
+    private void handleNextRequest() {
+        HttpRequest httpRequest = httpRequestDeserializer.deserializeNextRequest();
+        RequestPipeline requestPipeline = new RequestPipeline(middlewareLayers);
+
         try {
-            HttpRequest httpRequest = httpRequestDeserializer.deserializeNextRequest();
-            RequestPipeline requestPipeline = new RequestPipeline(middlewareLayers);
             HttpResponse httpResponse = requestPipeline.continueWith(httpRequest);
             httpResponseSerializer.writeResponse(httpResponse);
         } catch (Exception e) {
-            StringWriter stringWriter = new StringWriter();
-            e.printStackTrace(new PrintWriter(stringWriter));
-
             HttpResponse internalServerErrorResponse = HttpResponse
                     .internalServerError()
-                    .withBody(stringWriter.toString());
+                    .withBody(getStackTraceAsString(e));
 
             httpResponseSerializer.writeResponse(internalServerErrorResponse);
         }
+    }
+
+    private String getStackTraceAsString(Exception e) {
+        StringWriter stringWriter = new StringWriter();
+        e.printStackTrace(new PrintWriter(stringWriter));
+        return stringWriter.toString();
+    }
+
+    @Override
+    public void close() throws IOException {
+        clientSocket.close();
     }
 }
