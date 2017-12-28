@@ -24,18 +24,8 @@ public class RequestPipeline {
 
     public HttpResponse continueWith(HttpRequest httpRequest) {
         if (currentMiddlewareIndex < requestMiddleware.size()) {
-            try {
-                return requestMiddleware.get(currentMiddlewareIndex++).handleRequest(httpRequest, this);
-            } catch (Exception e) {
-                return HttpResponse.internalServerError().withBody(getStackTraceAsString(e));
-            }
+            return requestMiddleware.get(currentMiddlewareIndex++).handleRequest(httpRequest, this);
         }
         throw new IllegalStateException("There is no more middleware to execute.");
-    }
-
-    private String getStackTraceAsString(Exception e) {
-        StringWriter stringWriter = new StringWriter();
-        e.printStackTrace(new PrintWriter(stringWriter));
-        return stringWriter.toString();
     }
 }

@@ -1,5 +1,6 @@
 package part2.webserver;
 
+import http.middleware.ErrorHandlingMiddleware;
 import http.server.HttpServer;
 import part1.webserver.middleware.StaticFileRequestMiddleware;
 import part2.webserver.middleware.RequestLoggingMiddleware;
@@ -12,6 +13,7 @@ public class ServerMain {
         HttpServer httpServer = HttpServer.create()
                 .usePort(8081)
                 .useMiddleware(new RequestLoggingMiddleware("src/part2/webserver/serverlog.txt"))
+                .useMiddleware(new ErrorHandlingMiddleware())
                 .useMiddleware(new StaticFileRequestMiddleware("src/part1/webserver/wwwroot"))
                 .build();
 
