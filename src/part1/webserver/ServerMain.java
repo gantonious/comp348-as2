@@ -1,7 +1,6 @@
 package part1.webserver;
 
 import http.middleware.ErrorHandlingMiddleware;
-import http.middleware.PoweredByMiddleware;
 import http.server.HttpServer;
 import part1.webserver.middleware.StaticFileRequestMiddleware;
 
