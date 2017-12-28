@@ -94,8 +94,8 @@ function github_commits(user, limit){
                     var date = new Date(d[0], d[1] - 1, d[2]);
                     date = date.toLocaleDateString();
 
-                    out += '<div class="activity_block"><div class="activity_content"> pushed ' 
-                    out += '<a href="https://github.com/' + events[i].repo.name + '/commit/' + events[i].payload.head + '">' 
+                    out += '<div class="activity_block"><div class="activity_content"> pushed '; 
+                    out += '<a href="https://github.com/' + events[i].repo.name + '/commit/' + events[i].payload.head + '">'; 
                     out += "'" + events[i].payload.commits[0].message.split("\n")[0] + "'" + '</a>' + ' to '; 
                     out += '<a href="https://github.com/' + events[i].repo.name + '">' + events[i].repo.name + '</a>';
                     out += '<br><span style="font-size:85%;">on ' + date + '</span></div></div>';
@@ -103,6 +103,14 @@ function github_commits(user, limit){
                 }
                 i++;
             } 
+
+            if (k == 0) {
+                out += '<div class="activity_block" style="width: 550px; display: inline-block;"><div class="activity_content">'; 
+                out += 'Could not find any recent commits for this user ): You should go up and tell them ';
+                out += 'to make something amazing and to go on ahead and commit it! So me the page robot can enjoy displaying all of ';
+                out += 'their cool codes :D'
+                out += '</span></div></div>';
+            }
             // applies the html
             $('#activity').html(out);
         }  
@@ -121,6 +129,20 @@ $(window).ready(function() {
         // loads content
         $('#viewer').html($('#PRJ' + $(this).attr('button-id')).html());
         $('#description').html($('#DES' + $(this).attr('button-id')).html());
+    });
+
+    $('#github_username').on('click', function() {
+        if ($(this).val() == 'lookup a different github account') {
+            $(this).css('color', '#35343B'); 
+            $(this).val('');
+        }
+    });
+
+    $('#github_username').on('blur', function() {
+        if ($(this).val() == '') {
+            $(this).css('color', '#C4C4C4');
+            $(this).val('lookup a different github account');
+        }
     });
 });
 

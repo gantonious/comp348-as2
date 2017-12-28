@@ -1,26 +1,19 @@
 .nav_bar {
 	position: fixed;
-	display: inline-block;
 	font-family: roboto;
+	font-weight: 300;
 	top: 0px;
 	left: 0px;
 	opacity: 0.8;
 	background-color: #35343B;
 	width: 100%;
-	height: 41px;
-	overflow: auto;
 	margin-left: 0px;
 	z-index: 1;
 }
 .nav_bar ul {
 	list-style-type: none;
-	display: inline-block;
 	margin: 0px;
 	padding: 0px;
-}
-
-.nav_bar ul li {
-	display: inline-block;
 }
 
 .nav_bar ul a{
@@ -28,7 +21,7 @@
 	text-decoration: none;
 	background-color: #35343B;
 	color: white;
-	width: 300px;
+	width: 100px;
 	height: 25px;
 	text-align: center;
 	padding: 8px; 
@@ -42,6 +35,24 @@
 .nav_bar ul a.onpage {
 	color: #1597D8;
 }
+
+.nav_bar ul li {
+	display: inline;
+}
+
+.nav_bar ul li ul {
+	position: absolute;
+	display: none;
+}
+
+.nav_bar ul li ul li {
+	display: block;
+}
+
+.nav_bar ul li:hover ul {
+	display: block;
+}
+
 
 .live_container {
 	position: absolute;
