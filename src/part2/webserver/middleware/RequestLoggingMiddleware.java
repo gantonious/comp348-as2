@@ -38,13 +38,26 @@ public class RequestLoggingMiddleware implements IRequestMiddleware {
         String logEntry = String.format("%s - - [%s] \"%s %s HTTP/1.1\" %d %d\n",
                 host, timeStamp, requestMethod, path, responseCode, bytesTransmitted);
 
+        logToConsole(logEntry, httpResponse);
+        logToFile(logEntry);
+
+        return httpResponse;
+    }
+
+    private void logToConsole(String logMessage, HttpResponse httpResponse) {
+        if (httpResponse.isServerError()) {
+            System.err.print(logMessage);
+        } else {
+            System.out.print(logMessage);
+        }
+    }
+
+    private void logToFile(String logMessage) {
         try {
-            logfileDataOutputStream.write(logEntry.getBytes());
+            logfileDataOutputStream.write(logMessage.getBytes());
         } catch (Exception ex) {
             // TODO: handle
         }
-
-        return httpResponse;
     }
 
     private String getCurrentTimestamp() {

@@ -71,4 +71,8 @@ public class HttpResponse {
         this.body = body;
         return this;
     }
+
+    public boolean isServerError() {
+        return String.valueOf(getResponseCode()).charAt(0) == '5';
+    }
 }
