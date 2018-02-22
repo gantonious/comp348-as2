@@ -14,7 +14,7 @@ public class ServerMain {
                 .usePort(8081)
                 .useMiddleware(new RequestLoggingMiddleware("src/part2/webserver/serverlog.txt"))
                 .useMiddleware(new ErrorHandlingMiddleware())
-                .useMiddleware(new StaticFileRequestMiddleware("src/part1/webserver/wwwroot"))
+                .useMiddleware(new StaticFileRequestMiddleware())
                 .build();
 
         createShutdownHook(httpServer);
