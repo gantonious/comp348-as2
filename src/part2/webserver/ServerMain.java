@@ -12,7 +12,7 @@ public class ServerMain {
     public static void main(String[] args) {
         HttpServer httpServer = HttpServer.create()
                 .usePort(8081)
-                .useMiddleware(new RequestLoggingMiddleware("src/part2/webserver/serverlog.txt"))
+                .useMiddleware(new RequestLoggingMiddleware("./serverlog.txt"))
                 .useMiddleware(new ErrorHandlingMiddleware())
                 .useMiddleware(new StaticFileRequestMiddleware())
                 .build();
