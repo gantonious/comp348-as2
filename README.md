@@ -30,9 +30,9 @@ This will host the contents of `wwwroot` on `localhost:8080`.
 
 ### Design
 
-The design of the http server was seperated into 2 major components. Serialization/Deserialization of the reuqests and response and actually handling the given request and converting it to the appropriate response.
+The design of the http server was seperated into 2 major components. Serialization/Deserialization of the requests and response and actually handling the given request and converting it to the appropriate response.
 
-At a high leven when a request comes down the pipe it is deserialized to a `HttpRequest` object. That object is then passed to a `RequestPipeline` which "handles" the request and returns a `HttpResponse` object. That object is then serialized back into the Http protocol and sent over the wire back to the client.
+At a high level when a request comes down the pipe it is deserialized to a `HttpRequest` object. That object is then passed to a `RequestPipeline` which "handles" the request and returns a `HttpResponse` object. That object is then serialized back into the Http protocol and sent over the wire back to the client.
 
 The `RequestPipeline` consists of a list of middleware objects. A piece of middleware must implement the `IRequestMiddleware` interface which has the following method:
 
