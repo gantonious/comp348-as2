@@ -56,7 +56,7 @@ public class RequestLoggingMiddleware implements IRequestMiddleware {
         try {
             logfileDataOutputStream.write(logMessage.getBytes());
         } catch (Exception ex) {
-            // TODO: handle
+            // no-op: it's okay we still pushed the log entry to stdout
         }
     }
 

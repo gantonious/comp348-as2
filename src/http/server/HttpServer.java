@@ -34,7 +34,7 @@ public class HttpServer {
         try {
             return new ServerSocket(port);
         } catch (Exception e) {
-            throw new RuntimeException(); // TODO: put our own exception
+            throw new RuntimeException(e);
         }
     }
 
@@ -54,7 +54,7 @@ public class HttpServer {
         try {
             serverSocket.close();
         } catch (Exception e) {
-            // TODO: look
+            throw new RuntimeException(e);
         }
     }
 }
