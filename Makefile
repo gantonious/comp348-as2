@@ -1,6 +1,8 @@
-PACKAGE_NAME = as1
+PACKAGE_NAME = comp346_as2_3364768
 
 SOURCE_PATH = ./src
+DOCS_PATH = ./docs
+WWW_ROOT_PATH = ./wwwroot
 OUTPUT_PATH = ./out/production/as2
 
 PART1_MAIN = ./src/part1/webserver/ServerMain.java
@@ -26,6 +28,6 @@ clean:
 
 package:
 	@mkdir -p $(PACKAGE_NAME)
-	@cp -r Makefile $(SOURCE_PATH) *.md $(PACKAGE_NAME)/
+	@cp -r Makefile $(SOURCE_PATH) $(DOCS_PATH) $(WWW_ROOT_PATH) *.md $(PACKAGE_NAME)/
 	@zip -r $(PACKAGE_NAME).zip $(PACKAGE_NAME)/
 	@rm -rf $(PACKAGE_NAME)
